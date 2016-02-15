@@ -1,6 +1,14 @@
 $(document).ready(function(){
   var gridsize;
   var rowsize;
+  var mode = "hover";
+  var pickedcolor = "black";
+  $("#colorpicker").spectrum({
+    color: "#000",
+    change: function(color) {
+        pickedcolor = color.toHexString();
+    }
+});
   $('#gridinput').on('keyup change', function() {
     gridsize = $(this).val();
     if(gridsize > 50){
@@ -21,10 +29,26 @@ $(document).ready(function(){
     $('.gridcell').css('width', rowsize);
   });
   $(document).on('mouseenter', '.gridcell', function() {
-    console.log("hola");
-    $(this).css('background-color', 'black');
+    if(mode === "click") {
+      $(this).on('click', function(){
+        $(this).css('background-color', pickedcolor);
+      });
+    }else{
+      $(this).css('background-color', pickedcolor);
+    }
   });
-  $('button').on('click', function() {
+  //Clear button
+  $(document).on('click', '#clear', function() {
     $('.gridcell').css('background-color', 'white');
+  });
+  //Mode button
+  $(document).on('click', '#mode', function() {
+    if(mode === "hover"){
+      mode = "click";
+      $(this).text("Click Mode");
+    }else {
+      mode = "hover";
+      $(this).text("Hover Mode");
+    }
   });
 });

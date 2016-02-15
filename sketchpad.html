@@ -6,18 +6,22 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script type="text/javascript" src="scripts/sketchpad.js"></script>
+  <script type="text/javascript" src="scripts/spectrum.js"></script>
+  <link rel='stylesheet' href='styles/spectrum.css'/>
   <title>SketchPad</title>
 </head>
 
 <body>
-  <div>
+  <div id="header">SketchPad</div>
+  <div id="toolbar">
     <form>
       Grid Size:
       <input type="text" id="gridinput">
     </form>
-    <button>Clear</button>
+    <button id="clear">Clear</button>
+    <button id="mode">Hover Mode</button>
+    <form><input type="text" id="colorpicker"></form>
   </div>
-  <div id="grid">
-  </div>
+  <div id="grid"></div>
 </body>
 </html>
