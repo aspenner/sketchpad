@@ -10,10 +10,42 @@
   display: inline-block;
   height: 100%;
   outline: 1px solid #949494;
+  background-color: white;
 }
 
 .gridrow{
   float:left;
   width:100%;
   white-space: nowrap;
+}
+
+form{
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+button{
+  font: Arial;
+  color: black;
+  background-color: #EDEDED;
+  font-size: 13px;
+  margin: 11px 4px;
+  padding: 0px 16px;
+  text-align: center;
+  height: 36px;
+  line-height: 27px;
+  border: 1px solid #BFBFBF;
+}
+
+button:hover{
+  color: #222;
+  background-color: #F8F8F8;
+  border: 1px solid #BFBFBF;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#gridinput{
+  border: 1px solid #BFBFBF;
+  height: 20px;
+  font-size: 13px;
 }
