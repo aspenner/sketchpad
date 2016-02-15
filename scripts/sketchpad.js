@@ -4,6 +4,8 @@ $(document).ready(function(){
   var mode = "hover";
   var pickedcolor = "black";
   var griddisplay = 1;
+  //Initial value
+  $('#gridinput').val(0);
   //Color Picker
   $("#colorpicker").spectrum({
     color: "#000",
