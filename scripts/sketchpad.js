@@ -7,6 +7,7 @@ $(document).ready(function(){
   //Color Picker
   $("#colorpicker").spectrum({
     color: "#000",
+    showButtons: false,
     change: function(color) {
         pickedcolor = color.toHexString();
     }
