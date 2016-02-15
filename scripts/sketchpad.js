@@ -3,12 +3,15 @@ $(document).ready(function(){
   var rowsize;
   var mode = "hover";
   var pickedcolor = "black";
+  var griddisplay = 1;
+  //Color Picker
   $("#colorpicker").spectrum({
     color: "#000",
     change: function(color) {
         pickedcolor = color.toHexString();
     }
 });
+  //Automatic grid sizing
   $('#gridinput').on('keyup change', function() {
     gridsize = $(this).val();
     if(gridsize > 50){
@@ -28,6 +31,7 @@ $(document).ready(function(){
     $('.gridrow').css('height', rowsize);
     $('.gridcell').css('width', rowsize);
   });
+  //Hover and Click mode
   $(document).on('mouseenter', '.gridcell', function() {
     if(mode === "click") {
       $(this).on('click', function(){
@@ -51,4 +55,15 @@ $(document).ready(function(){
       $(this).text("Hover Mode");
     }
   });
+  //Grid display toggle
+  $(document).on('click', '#griddisplay', function() {
+    if(griddisplay){
+      $('.gridcell').css('outline', 'none');
+      griddisplay=0;
+    }else{
+      $('.gridcell').css('outline', '1px solid #949494');
+      griddisplay=1;
+    }
+
+  })
 });
