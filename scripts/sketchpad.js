@@ -3,12 +3,12 @@ $(document).ready(function(){
   var rowsize;
   $('#gridinput').on('keyup change', function() {
     gridsize = $(this).val();
-    /*if(gridsize > 20){
+    if(gridsize > 50){
       $('#gridinput').css('background-color', '#F69D9D');
-      gridsize = 20;
+      gridsize = 50;
     }else{
       $('#gridinput').css('background-color', 'white');
-    }*/
+    }
     $('#grid').empty();
     for(i=0; i<gridsize; i++) {
       rowsize = 500/gridsize
