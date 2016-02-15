@@ -10,13 +10,10 @@
 
 .gridcell{
   display: inline-block;
-  padding: 10px 10px 10px 10px;
-  margin: 1px 1px 1px 1px;
-  border: 1px solid black;
+  height: 100%;
+  outline: 1px solid black;
 }
 
 .gridrow{
   width:100%;
-  height: 22px;
-  margin: 1px 1px 1px 1px;
 }
