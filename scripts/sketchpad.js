@@ -5,6 +5,17 @@ $(document).ready(function(){
   var pickedcolor = "black";
   var griddisplay = 1;
   var rainbow = 0;
+  var solid = 0;
+  var colormode = "color";
+  //Get initial mode
+  colormode = $('#colormodebox input[type="radio"]:checked').val();
+  if(colormode==="rainbow"){
+    rainbow = 1;
+    solid = 0;
+  }else{
+    rainbow = 0;
+    solid=1;
+  }
   //Initial value
   $('#gridinput').val(0);
   //Color Picker
@@ -40,7 +51,7 @@ $(document).ready(function(){
     if(mode === "click") {
       $(this).on('click', function(){
         if(rainbow) {
-          pickedcolor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+          pickedcolor = 'rgb(' + (Math.floor(Math.random() *256)) + ',' + (Math.floor(Math.random() *256)) + ',' + (Math.floor(Math.random() *256)) + ')';
         }
         $(this).css('background-color', pickedcolor);
       });
@@ -75,12 +86,20 @@ $(document).ready(function(){
       griddisplay=1;
     }
   });
-  //Rainbow button toggle
-  $(document).on('click', '#rainbow', function() {
-    if($('#rainbow').is(":checked")){
+  //Colormode implementation
+  //$('#colormodebox input').on('change'. function() {
+
+  //});
+  $(document).on('change', '#colormodebox', function() {
+    colormode = $('#colormodebox input[type="radio"]:checked').val();
+    if(colormode==="rainbow"){
       rainbow = 1;
+      solid = 0;
+      grayscale = 0;
     }else{
       rainbow = 0;
+      solid=1;
+      grayscale=0;
       pickedcolor = $('#colorpicker').spectrum('get').toHexString();
     }
   });
