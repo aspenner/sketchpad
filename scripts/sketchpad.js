@@ -45,6 +45,11 @@ $(document).ready(function(){
     }
     $('.gridrow').css('height', rowsize);
     $('.gridcell').css('width', rowsize);
+    if(griddisplay){
+      $('.gridcell').css('outline', '1px solid #949494');
+    }else{
+      $('.gridcell').css('outline', 'none');
+    }
   });
   //Hover and Click mode
   $(document).on('mouseenter', '.gridcell', function() {
