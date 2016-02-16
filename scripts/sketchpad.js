@@ -4,6 +4,7 @@ $(document).ready(function(){
   var mode = "hover";
   var pickedcolor = "black";
   var griddisplay = 1;
+  var rainbow = 0;
   //Initial value
   $('#gridinput').val(0);
   //Color Picker
@@ -13,9 +14,9 @@ $(document).ready(function(){
     change: function(color) {
         pickedcolor = color.toHexString();
     }
-});
+  });
   //Automatic grid sizing
-  $('#gridinput').on('keyup change', function() {
+  $(document).on('keyup', '#gridinput', function() {
     gridsize = $(this).val();
     if(gridsize > 50){
       $('#gridinput').css('background-color', '#F69D9D');
@@ -25,7 +26,7 @@ $(document).ready(function(){
     }
     $('#grid').empty();
     for(i=0; i<gridsize; i++) {
-      rowsize = 500/gridsize
+      rowsize = 500/gridsize;
       $('#grid').append('<div class="gridrow"></div>');
     }
     for(j=0; j<gridsize; j++) {
@@ -38,9 +39,15 @@ $(document).ready(function(){
   $(document).on('mouseenter', '.gridcell', function() {
     if(mode === "click") {
       $(this).on('click', function(){
+        if(rainbow) {
+          pickedcolor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+        }
         $(this).css('background-color', pickedcolor);
       });
     }else{
+      if(rainbow) {
+        pickedcolor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+      }
       $(this).css('background-color', pickedcolor);
     }
   });
@@ -67,6 +74,14 @@ $(document).ready(function(){
       $('.gridcell').css('outline', '1px solid #949494');
       griddisplay=1;
     }
-
-  })
+  });
+  //Rainbow button toggle
+  $(document).on('click', '#rainbow', function() {
+    if($('#rainbow').is(":checked")){
+      rainbow = 1;
+    }else{
+      rainbow = 0;
+      pickedcolor = $('#colorpicker').spectrum('get').toHexString();
+    }
+  });
 });
