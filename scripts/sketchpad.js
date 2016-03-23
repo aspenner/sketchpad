@@ -7,6 +7,21 @@ $(document).ready(function(){
   var rainbow = 0;
   var solid = 0;
   var colormode = "color";
+  var neon = 0;
+  var random = 0;
+  var neonColors = [
+      "#F2EA02",
+      "#E6FB04",
+      "#FF0000",
+      "#FF6600",
+      "#00FF00",
+      "#00FF66",
+      "#0062FF",
+      "#00FFFF",
+      "#0033FF",
+      "#FF00CC",
+      "#FF0099",
+      "#9900FF"];
   //Get initial mode
   colormode = $('#colormodebox input[type="radio"]:checked').val();
   if(colormode==="rainbow"){
@@ -21,7 +36,9 @@ $(document).ready(function(){
   //Color Picker
   $("#colorpicker").spectrum({
     color: "#000",
-    showButtons: false,
+    showButtons: true,
+    chooseText: "Confirm",
+    cancelText: "Cancel",
     change: function(color) {
         pickedcolor = color.toHexString();
     }
@@ -56,13 +73,19 @@ $(document).ready(function(){
     if(mode === "click") {
       $(this).on('click', function(){
         if(rainbow) {
-          pickedcolor = 'rgb(' + (Math.floor(Math.random() *256)) + ',' + (Math.floor(Math.random() *256)) + ',' + (Math.floor(Math.random() *256)) + ')';
+          pickedcolor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() *256)) + ',' + (Math.floor(Math.random() *256)) + ')';
+        }else if(neon) {
+          random = Math.floor(Math.random()*neonColors.length);
+          pickedcolor = neonColors[random];
         }
         $(this).css('background-color', pickedcolor);
       });
     }else{
       if(rainbow) {
         pickedcolor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+      }else if(neon) {
+        random = Math.floor(Math.random()*neonColors.length);
+        pickedcolor = neonColors[random];
       }
       $(this).css('background-color', pickedcolor);
     }
@@ -92,20 +115,21 @@ $(document).ready(function(){
     }
   });
   //Colormode implementation
-  //$('#colormodebox input').on('change'. function() {
-
-  //});
   $(document).on('change', '#colormodebox', function() {
     colormode = $('#colormodebox input[type="radio"]:checked').val();
     if(colormode==="rainbow"){
       rainbow = 1;
       solid = 0;
-      grayscale = 0;
-    }else{
+      neon = 0;
+    }else if(colormode === "color"){
       rainbow = 0;
       solid=1;
-      grayscale=0;
+      neon=0;
       pickedcolor = $('#colorpicker').spectrum('get').toHexString();
+    }else {
+      rainbow = 0;
+      solid = 0;
+      neon = 1;
     }
   });
 });
